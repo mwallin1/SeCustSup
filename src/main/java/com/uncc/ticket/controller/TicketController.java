@@ -52,13 +52,15 @@ public class TicketController {
 
     @RequestMapping(value = "/tickets/edit/{id}", method = RequestMethod.GET)
     public String editTicket(Model model,@PathVariable("id") Long id) {
-        // Code here
-        return "redirect:/"; //Remove this line
+        // addAttribute to current ticket
+        model.addAttribute("ticket", ticketService.findById(id));
+        return "tickets/storeTicket";
     }
 
     @RequestMapping(value = "/tickets/delete/{id}", method = RequestMethod.GET)
     public String deleteTicket(@PathVariable("id") Long id) {
-        // Code here
+        //deletes selected ticket
+        ticketService.deleteById(id);
         return "redirect:/";
     }
 
